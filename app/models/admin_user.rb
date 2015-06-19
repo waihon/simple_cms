@@ -3,6 +3,10 @@ class AdminUser < ActiveRecord::Base
   # To configure a different table name:
   # self.table_name = "admin_users"
 
+  # Challenge: Define a named scope called #sorted that order by
+  # last_name, then first_name
+  scope :sorted, lambda { order("last_name ASC, first_name ASC") }
+
   has_secure_password
 
   has_and_belongs_to_many :pages
@@ -27,14 +31,18 @@ class AdminUser < ActiveRecord::Base
   # shortcut validations, aka "sexy validations"
   validates :first_name, :presence => true,
                          :length => { :maximum => 25 }
-  validates :last_name, :presence => true,
-                        :length => { :maximum => 50 }
-  validates :username, :length => { :within => 8..25 },
-                       :uniqueness => true
-  validates :email, :presence => true,
-                    :length => { :maximum => 100 },
-                    :format => EMAIL_REGEX,
-                    :confirmation => true
+  validates :last_name,  :presence => true,
+                         :length => { :maximum => 50 }
+  validates :username,   :length => { :within => 8..25 },
+                         :uniqueness => true
+  validates :email,      :presence => true,
+                         :length => { :maximum => 100 },
+                         :format => EMAIL_REGEX,
+                         :confirmation => true
+  validates :password,   :length => { :minimum => 8 } #,
+                         #:confirmation => true
+  #validates :password_confirmation, :presence => true,
+  #                       :if => "!password.nil?"                         
 
   validate :username_is_allowed
   #validate :no_new_users_on_saturday, :on => :create
@@ -53,4 +61,12 @@ class AdminUser < ActiveRecord::Base
     end
   end
 
+  # Challenge: Define a method #name which returns first_name and 
+  # last_name with a space between.
+  def name
+    self.first_name + ' ' + self.last_name
+  end
+
+  # Challenge: Define a named scope called #sorted that order by
+  # last_name, then first_name
 end
