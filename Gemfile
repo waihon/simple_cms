@@ -7,6 +7,9 @@ gem 'rails', '4.2.0'
 #gem 'mysql2'
 gem 'sqlite3', '1.3.9'
 
+# Sort and reorder objects with positions
+gem 'acts_as_list', '~> 0.7.2'
+
 # Use SCSS for stylesheets
 #gem 'sass-rails', '~> 4.0.0'
 
