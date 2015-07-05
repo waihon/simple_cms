@@ -1,3 +1,4 @@
+# Reviewed and documented.
 class Section < ActiveRecord::Base
 
   belongs_to :page

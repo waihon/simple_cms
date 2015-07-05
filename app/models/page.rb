@@ -1,3 +1,4 @@
+# Reviewed and documented.
 class Page < ActiveRecord::Base
 
   belongs_to :subject

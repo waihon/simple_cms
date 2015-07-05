@@ -1,3 +1,4 @@
+# Reviewed and documented.
 class SectionsController < ApplicationController
 
   layout "admin"
@@ -28,7 +29,8 @@ class SectionsController < ApplicationController
       flash[:notice] = "Section created successfully."
       redirect_to(:action => 'index', :page_id => @page.id)
     else
-      @pages = Page.order('position ASC')
+      #@pages = Page.order('position ASC')
+      @pages = @page.subject.pages.sorted
       #@section_count = Section.count + 1
       @section_count = @page.sections.count + 1
       render('new')
@@ -37,7 +39,8 @@ class SectionsController < ApplicationController
 
   def edit
     @section = Section.find(params[:id])
-    @pages = Page.order('position ASC')
+    #@pages = Page.order('position ASC')
+    @pages = @page.subject.pages.sorted
     #@section_count = Section.count
     @section_count = @page.sections.count
   end
@@ -48,7 +51,8 @@ class SectionsController < ApplicationController
       flash[:notice] = "Section updated successfully."
       redirect_to(:action => 'show', :id => @section.id, :page_id => @page.id)
     else
-      @pages = Page.order('position ASC')
+      #@pages = Page.order('position ASC')
+      @pages = @page.subject.pages.sorted
       #@section_count = Section.count
       @section_count = @page.sections.count
       render('edit')

@@ -1,3 +1,4 @@
+# Reviewed and documeneted
 class AccessController < ApplicationController
 
   layout 'admin'

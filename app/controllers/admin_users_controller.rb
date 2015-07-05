@@ -1,3 +1,4 @@
+# Reviewed and documented.
 class AdminUsersController < ApplicationController
 
   layout "admin"
@@ -52,7 +53,7 @@ class AdminUsersController < ApplicationController
   def destroy
     @admin_user = AdminUser.find(params[:id])
     if @admin_user.destroy
-      flash[:notification] = "Admin User '#{@admin_user.username}' is deleted."
+      flash[:notice] = "Admin User '#{@admin_user.username}' is deleted."
       redirect_to(:action => "index")
     else
       render(:action => "delete")

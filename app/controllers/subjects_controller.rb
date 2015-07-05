@@ -1,3 +1,4 @@
+# Reviewed and documented.
 class SubjectsController < ApplicationController
 
   layout "admin"
@@ -42,7 +43,7 @@ class SubjectsController < ApplicationController
     @subject = Subject.find(params[:id])
     # Update the object
     if @subject.update_attributes(subject_params)
-      # If update succeeds, redirect to the index action
+      # If update succeeds, redirect to the show action
       flash[:notice] = "Subject updated successfully."
       redirect_to(:action => 'show', :id => @subject.id)
     else

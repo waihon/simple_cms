@@ -1,8 +1,10 @@
+<!-- Reviewed and documented. -->
 <%= error_messages_for(@section) %>
 
 <table summary="Section form fields">
   <tr>
     <th><%= f.label(:page_id, "Page") %></th>
+    <!-- collect is the synonym for map. -->
     <td><%= f.select(:page_id, @pages.collect {|p| [p.name, p.id]}) %>
 </td>
   </tr>

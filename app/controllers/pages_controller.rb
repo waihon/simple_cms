@@ -1,3 +1,4 @@
+# Reviewed and documented.
 class PagesController < ApplicationController
 
   layout "admin"

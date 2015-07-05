@@ -1,3 +1,4 @@
+# Reviewed and documented.
 class Subject < ActiveRecord::Base
 
   # Could delete related pages automatically

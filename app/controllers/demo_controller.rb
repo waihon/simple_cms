@@ -1,3 +1,4 @@
+# Reviewed and documented.
 class DemoController < ApplicationController
 
   layout 'application'

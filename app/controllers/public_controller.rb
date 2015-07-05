@@ -1,3 +1,4 @@
+# Reviewing...
 class PublicController < ApplicationController
   
   layout 'public'

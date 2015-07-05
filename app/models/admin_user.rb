@@ -1,3 +1,4 @@
+# Reviewed and documented.
 class AdminUser < ActiveRecord::Base
 
   # To configure a different table name:
@@ -66,7 +67,4 @@ class AdminUser < ActiveRecord::Base
   def name
     self.first_name + ' ' + self.last_name
   end
-
-  # Challenge: Define a named scope called #sorted that order by
-  # last_name, then first_name
 end
