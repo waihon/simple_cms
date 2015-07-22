@@ -1,7 +1,8 @@
 # Reviewed and documented.
 class AdminUser < ActiveRecord::Base
 
-  # To configure a different table name:
+  # Instead of changing User class to AdminUser, alternatively 
+  # we could configure a different table name:
   # self.table_name = "admin_users"
 
   # Challenge: Define a named scope called #sorted that order by
