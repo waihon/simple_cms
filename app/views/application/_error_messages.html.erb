@@ -1,11 +1,24 @@
 <!-- Reviewed and documented. -->
-<% if object && object.errors.size > 0 %>
+<% errors_size ||= 0 %>
+<% if objects %>
+  <% objects.each do |object| %>
+    <% if object && object.errors.size > 0 %>
+      <% errors_size += object.errors.size %>
+    <% end %>
+  <% end %>
+<% end %>
+<%# if object && object.errors.size > 0 %>
+<% if errors_size > 0 %>
   <div id="errorExplanation">
-    <h2><%= pluralize(object.errors.size, "error") %> prohibited this record from being saved</h2>
+    <h2><%= pluralize(errors_size, "error") %> prohibited this record from being saved</h2>
     <p>There were problems with the following fields:</p>
     <ul>
-    <% object.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+    <% objects.each do |object| %>
+      <% if object %>
+        <% object.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      <% end %>
     <% end %>
     </ul>
   </div>

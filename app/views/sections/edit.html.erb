@@ -10,6 +10,11 @@
 
     <%= render(:partial => "form", :locals => {:f => f}) %>
 
+    <%#= f.fields_for :section_edits, @section.section_edits.build(summary: "New summary") do |sef| %>
+    <%= f.fields_for :section_edits, @section_edit do |sef| %>
+      <%= render(:partial => "section_edit", :locals => {:sef => sef}) %>
+    <% end %>    
+
     <div class="form-buttons">
       <%= submit_tag("Update Section") %>
     </div>

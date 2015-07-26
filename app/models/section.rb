@@ -6,6 +6,7 @@ class Section < ActiveRecord::Base
   has_many :editors, :through => :section_edits, :class_name => "AdminUser"
 
   accepts_nested_attributes_for :section_edits
+  validates_associated :section_edits
 
   acts_as_list :scope => :page
 

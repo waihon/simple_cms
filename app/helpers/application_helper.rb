@@ -2,8 +2,10 @@
 module ApplicationHelper
 
   def error_messages_for(object)
+    # object passed in could be an array, a single object, or a nil
+    objects = Array(object)
     render(:partial => 'application/error_messages',
-      :locals => {:object => object})
+      :locals => {:objects => objects})
   end
 
   def status_tag(boolean, options={})

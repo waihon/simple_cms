@@ -29,8 +29,6 @@ class SectionsController < ApplicationController
 
   def create
     @section = Section.new(section_params)
-    puts "section_params: #{section_params.inspect}"
-    puts "params: #{params.inspect}"
     if @section.save
       flash[:notice] = "Section created successfully."
       redirect_to(:action => 'index', :page_id => @page.id)
@@ -49,13 +47,21 @@ class SectionsController < ApplicationController
     @pages = @page.subject.pages.sorted
     # Scoping sections within the parent page
     @section_count = @page.sections.count
+
+    current_editor = AdminUser.find(session[:user_id])
+    @section_edit = @section.section_edits.build(editor: current_editor, 
+      summary: "Default summary")    
   end
 
   def update
     @section = Section.find(params[:id])
-    if @section.update_attributes(section_params)
-      flash[:notice] = "Section updated successfully."
-      redirect_to(:action => 'show', :id => @section.id, :page_id => @page.id)
+    @section_edit = SectionEdit.new(section_edit_params)
+    if @section.update_attributes(section_params) && @section_edit.save
+      #@section_edit = SectionEdit.new(section_edit_params)
+      #if @section_edit.save
+        flash[:notice] = "Section updated successfully."
+        redirect_to(:action => 'show', :id => @section.id, :page_id => @page.id)
+      #end
     else
       # Scoping pages within the parent subject
       @pages = @page.subject.pages.sorted
@@ -81,7 +87,12 @@ class SectionsController < ApplicationController
     def section_params
       params.require(:section).permit(:page_id, :name, :position, :visible, 
         :content_type, :content, section_edits_attributes: 
-        [:section_id, :admin_user_id, :summary])
+        #[:section_id, :admin_user_id, :summary])
+        [:admin_user_id, :summary])
+    end
+
+    def section_edit_params
+      params[:section].require(:section_edits).permit(:section_id, :admin_user_id, :summary)
     end
 
     def find_page

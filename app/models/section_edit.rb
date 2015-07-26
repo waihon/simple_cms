@@ -10,6 +10,8 @@ class SectionEdit < ActiveRecord::Base
   validates_presence_of :section
   validates_presence_of :summary
 
+  scope :newest_first, -> { order("section_edits.created_at DESC")}
+
   # Not required unless we're also creating a new editor during the creation of section
   #accepts_nested_attributes_for :editor
 

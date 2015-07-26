@@ -8,11 +8,11 @@
 
   <table summary="Section detail view">
     <tr>
-      <th>Page ID</th>
-      <td><%= @section.page_id %></td>
+      <th>Page Name</th>
+      <td><%= Page.all.find(@section.page_id).name %></td>
     </tr>
     <tr>
-      <th>Name</th>
+      <th>Section Name</th>
       <td><%= @section.name %></td>
     </tr>
     <tr>
@@ -40,11 +40,11 @@
       <td><%= @section.updated_at %></td>
     </tr>
     <tr>
-      <th colspan="2" align="center">Edit Histroy</th>
+      <th colspan="2" align="center">Edit Histroy (Newest First)</th>
     </tr>
-    <% @section.section_edits.each do |se| %>
+    <% @section.section_edits.newest_first.each do |se| %>
       <tr>
-        <th>Updated at</th>
+        <th>Edited at</th>
         <td><%= se.updated_at %></td>
       </tr>
       <tr>
