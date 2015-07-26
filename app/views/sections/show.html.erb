@@ -39,6 +39,19 @@
       <th>Updated</th>
       <td><%= @section.updated_at %></td>
     </tr>
+    <tr>
+      <th colspan="2" align="center">Edit Histroy</th>
+    </tr>
+    <% @section.section_edits.each do |se| %>
+      <tr>
+        <th>Updated at</th>
+        <td><%= se.updated_at %></td>
+      </tr>
+      <tr>
+        <th>Summary</th>
+        <td><%= se.summary %></td>
+      </tr>
+    <% end %>
   </table>
 
 </div>

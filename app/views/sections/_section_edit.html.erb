@@ -1,0 +1,17 @@
+<table summary="Section form fields">
+  <tr>
+    <th><%#= "Section Edit #{sef.index}" %></th> 
+    <td>
+      <p>
+        <%= sef.hidden_field :section_id %>
+        <%= sef.hidden_field :admin_user_id %>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <th><%= sef.label :summary %></th>
+    <td>
+      <%= sef.text_area :summary, size: "40x5" %>
+    </td>
+  </tr>
+</table>

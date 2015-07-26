@@ -2,8 +2,10 @@
 class Section < ActiveRecord::Base
 
   belongs_to :page
-  has_many :section_edits
+  has_many :section_edits, inverse_of: :section
   has_many :editors, :through => :section_edits, :class_name => "AdminUser"
+
+  accepts_nested_attributes_for :section_edits
 
   acts_as_list :scope => :page
 
